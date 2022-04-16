@@ -59,4 +59,12 @@ const productSchema = mongoose.Schema({
   },
 });
 
+productSchema.virtual("id").get(function () {
+  return this._id.toString();
+});
+
+productSchema.set("toJson", {
+  virtuals: true,
+});
+
 exports.Product = mongoose.model("Product", productSchema);
