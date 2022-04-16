@@ -5,13 +5,11 @@ require("dotenv/config");
 
 const api = process.env.API_URL;
 const app = express();
+const productsRouter = require("./routers/products");
 
 app.use(express.json());
 app.use(morgan("tiny"));
-
-app.get(`${api}/products`, (req, res) => {
-  res.send("this is a list of products");
-});
+app.use(`${api}/products`, productsRouter);
 
 mongoose
   .connect(process.env.CONNECTION_STRING, {
