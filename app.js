@@ -1,24 +1,31 @@
 const express = require("express");
+const app = express();
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const api = process.env.API_URL;
-
-const app = express();
 require("dotenv/config");
 
 app.use(cors());
 app.options("*", cors());
 
-// Routes
-const productsRouter = require("./routers/products");
-
-// Middlewares
+//middleware
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(`${api}/products`, productsRouter);
 
-// DB connection
+//Routes
+const categoriesRoutes = require("./routers/categories");
+const productsRoutes = require("./routers/products");
+const usersRoutes = require("./routers/users");
+const ordersRoutes = require("./routers/orders");
+
+const api = process.env.API_URL;
+
+app.use(`${api}/categories`, categoriesRoutes);
+app.use(`${api}/products`, productsRoutes);
+app.use(`${api}/users`, usersRoutes);
+app.use(`${api}/orders`, ordersRoutes);
+
+//Database
 mongoose
   .connect(process.env.CONNECTION_STRING, {
     useNewUrlParser: true,
@@ -26,13 +33,13 @@ mongoose
     dbName: "eshop-database",
   })
   .then(() => {
-    console.log("Database connection is ready");
+    console.log("Database Connection is ready");
   })
   .catch((err) => {
     console.log(err);
   });
 
-// Server
+//Server
 app.listen(3000, () => {
-  console.log("server started");
+  console.log("server is running http://localhost:3000");
 });
