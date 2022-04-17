@@ -63,7 +63,7 @@ productSchema.virtual("id").get(function () {
   return this._id.toString();
 });
 
-productSchema.set("toJson", {
+productSchema.set("toJSON", {
   virtuals: true,
 });
 

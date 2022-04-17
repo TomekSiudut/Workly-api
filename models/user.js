@@ -47,7 +47,7 @@ userSchema.virtual("id").get(function () {
   return this._id.toString();
 });
 
-userSchema.set("toJson", {
+userSchema.set("toJSON", {
   virtuals: true,
 });
 
