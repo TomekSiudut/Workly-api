@@ -2,7 +2,6 @@ const { User } = require("../models/user");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { Category } = require("../models/category");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -29,12 +28,6 @@ router.post("/", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     passwordHash: bcrypt.hashSync(req.body.password, 10),
-    phone: req.body.phone,
-    isAdmin: req.body.isAdmin,
-    apartment: req.body.apartment,
-    zip: req.body.zip,
-    city: req.body.color,
-    country: req.body.country,
   });
 
   user = await user.save();
@@ -72,12 +65,6 @@ router.post("/register", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     passwordHash: bcrypt.hashSync(req.body.password, 10),
-    phone: req.body.phone,
-    isAdmin: req.body.isAdmin,
-    apartment: req.body.apartment,
-    zip: req.body.zip,
-    city: req.body.color,
-    country: req.body.country,
   });
 
   user = await user.save();
