@@ -17,13 +17,14 @@ app.use(authJwt());
 app.use(errorHandler);
 
 //Routes
-const categoriesRoutes = require("./routers/categories");
+
 const productsRoutes = require("./routers/products");
+const usersRoutes = require("./routers/users");
 
 const api = process.env.API_URL;
 
-app.use(`${api}/categories`, categoriesRoutes);
 app.use(`${api}/products`, productsRoutes);
+app.use(`${api}/users`, usersRoutes);
 
 //Database
 mongoose
