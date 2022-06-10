@@ -15,12 +15,10 @@ app.use(morgan("tiny"));
 app.use(authJwt());
 app.use(errorHandler);
 
-const productsRoutes = require("./routers/products");
 const usersRoutes = require("./routers/users");
 
 const api = process.env.API_URL;
 
-app.use(`${api}/products`, productsRoutes);
 app.use(`${api}/users`, usersRoutes);
 
 mongoose
